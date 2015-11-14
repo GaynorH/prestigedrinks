@@ -1,0 +1,302 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div id="messages_product_view" class="grid-100"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
+<div class="product-view">
+    <div class="grid-50">
+        <div class="product-img-box">
+            <?php echo $this->getChildHtml('media') ?>
+        </div>
+    </div>
+    <div class="grid-50">
+        <div class="product-essential">
+            <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+                <?php echo $this->getBlockHtml('formkey') ?>
+                <div class="no-display">
+                    <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+                    <input type="hidden" name="related_product" id="related-products-field" value="" />
+                </div>
+
+                <div class="product-shop">
+                    <div class="product-name">
+                        <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+                    </div>
+
+                    <div class="reviews-block">
+                        <h2>Customer Rating</h2>
+                        <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+                    </div>
+
+                    <div class="available-container">
+                        <?php
+                            if($_product->getAttributeText("bottle_size")):
+                        ?>
+                        <div class="product-attr">
+                            <p><?php echo $_product->getAttributeText("bottle_size"); ?>/<?php echo $_product->getAttributeText("abv"); ?></p>
+                        </div>
+                        <?php
+                            endif;
+                        ?>
+
+                        <?php echo $this->getChildHtml('alert_urls') ?>
+                        <?php echo $this->getChildHtml('product_type_data') ?>
+                        <?php echo $this->getTierPriceHtml() ?>
+                        <?php echo $this->getChildHtml('extrahint') ?>
+                        <div class="product-specials">
+			    <?php if($_product->getData("has_options") == "1") { ?>
+                            <!--<p class="delivery">Add priority upgrade for next day delivery</p>-->
+			    <?php } else { ?>
+			    <p class="delivery">Order before 1:30pm for next day delivery</p>
+			    <?php } ?>
+			    <?php if($_product->getData("has_options") == "1") {} else { ?>
+			    <?php if($_product->getEngraving() == "1") { ?>	
+                            <p class="engraved">WHY NOT ENGRAVE THIS BOTTLE?</p>
+			    <?php } } ?>
+                        </div>
+                        <div class="social-sharing">
+                            <a href="//www.facebook.com/sharer.php?u=<?php echo $_product->getProductUrl(); ?>" class="facebook-icons"><span class="fb-text social-icons">Facebook</span><span class="share-count"></span></a>
+                            <a href="//twitter.com/share?url=<?php echo $_product->getProductUrl(); ?>" class="twitter-icons"><span class="twitter-text social-icons">Twitter</span><span class="share-count"></span></a>
+                            <a href="//pinterest.com/pin/create/button/?url=<?php echo $_product->getProductUrl(); ?>" class="pinterest-icons"><span class="pin-text social-icons">Pinterest</span><span class="share-count"></span></a>
+                            <a href="mailto:"><span class="email-text social-icons">Email</span></a>
+                        </div>
+                    </div>
+
+                    <?php if (!$this->hasOptions()):?>
+                        <div class="add-to-box <?php if($_product->getEngravedVariation() != "NULL") { echo "engraved"; } ?>">
+                            <?php if($_product->isSaleable()): ?>
+                                <?php echo $this->getChildHtml('addtocart') ?>
+                            <?php endif; ?>
+                            <?php //echo $this->getChildHtml('addto') ?>
+                        </div>
+                        <?php echo $this->getChildHtml('extra_buttons') ?>
+                    <?php elseif (!$_product->isSaleable()): ?>
+                        <div class="add-to-box">
+                            <?php echo $this->getChildHtml('addto') ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php echo $this->getChildHtml('other');?>
+                    <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                        <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                    <?php endif;?>
+
+                    <?php //echo $this->getChildHtml('product_additional_data') ?>
+
+                </div>
+
+                <div class="clearer test"></div>
+                <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                    <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+                <?php endif;?>
+            </form>
+            <script type="text/javascript">
+                //<![CDATA[
+                var productAddToCartForm = new VarienForm('product_addtocart_form');
+                productAddToCartForm.submit = function(button, url) {
+                    if (this.validator.validate()) {
+                        var form = this.form;
+                        var oldUrl = form.action;
+
+                        if (url) {
+                            form.action = url;
+                        }
+                        var e = null;
+                        try {
+                            this.form.submit();
+                        } catch (e) {
+                        }
+                        this.form.action = oldUrl;
+                        if (e) {
+                            throw e;
+                        }
+
+                        if (button && button != 'undefined') {
+                            button.disabled = true;
+                        }
+                    }
+                }.bind(productAddToCartForm);
+
+                productAddToCartForm.submitLight = function(button, url){
+                    if(this.validator) {
+                        var nv = Validation.methods;
+                        delete Validation.methods['required-entry'];
+                        delete Validation.methods['validate-one-required'];
+                        delete Validation.methods['validate-one-required-by-name'];
+                        // Remove custom datetime validators
+                        for (var methodName in Validation.methods) {
+                            if (methodName.match(/^validate-datetime-.*/i)) {
+                                delete Validation.methods[methodName];
+                            }
+                        }
+
+                        if (this.validator.validate()) {
+                            if (url) {
+                                this.form.action = url;
+                            }
+                            this.form.submit();
+                        }
+                        Object.extend(Validation.methods, nv);
+                    }
+                }.bind(productAddToCartForm);
+                //]]>
+            </script>
+        </div>
+        <div class="product-collateral">
+            <div class="product-tab">
+                <h2>Description</h2>
+                <div class="tab-content">
+                    <p><?php echo $_product->getDescription(); ?></p>
+                </div>
+            </div>
+	    <?php if($_product->getData("has_options") == 0) { ?>
+            <?php if($_product->getShortDescription() != "&nbsp;" && $_product->getShortDescription() != NULL) { ?>
+	    <div class="product-tab">
+                <h2>Tasting Notes</h2>
+                <div class="tab-content">
+                <p><?php echo $_product->getShortDescription(); ?></p>
+		</div>
+            </div>
+	    <?php } if($_product->getEngraving() == "1") { ?>
+            <div class="product-tab">
+                <h2>Engraving Options</h2>
+                <div class="tab-content">
+                </div>
+            </div>
+	    <?php } } ?>
+            <?php /*<div class="product-tab">
+                <h2>Delivery</h2>
+                <div class="tab-content">
+		     <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('product_delivery_tab')->toHtml(); ?>
+                </div>
+            </div>*/?>
+            <div class="product-tab">
+                <h2>Reviews</h2>
+                <div class="tab-content">
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php 
+	$cats = $_product->getCategoryIds();
+	if($cats[0] == "8"):
+            echo $this->getLayout()->createBlock('cms/block')->setBlockId('craft_beer_info_block')->toHtml();
+        elseif($cats[0] == '3'):
+            echo $this->getLayout()->createBlock('cms/block')->setBlockId('personalised_info_block')->toHtml();
+        elseif($cats[0] == '9'):
+            echo $this->getLayout()->createBlock('cms/block')->setBlockId('whisky_info_block')->toHtml();
+        elseif($cats[0] == '7'):
+            echo $this->getLayout()->createBlock('cms/block')->setBlockId('spirits_info_block')->toHtml();
+        elseif($cats[0] == '12'):
+            echo $this->getLayout()->createBlock('cms/block')->setBlockId('champagne_info_block')->toHtml();
+        elseif($cats[0] == '67'):
+            echo $this->getLayout()->createBlock('cms/block')->setBlockId('port_info_block')->toHtml();
+        elseif($cats[0] == '13'):
+            echo $this->getLayout()->createBlock('cms/block')->setBlockId('wine_info_block')->toHtml();
+        elseif($cats[0] == '5'):
+            echo $this->getLayout()->createBlock('cms/block')->setBlockId('accessories_info_block')->toHtml();
+        else:
+            echo $this->getLayout()->createBlock('cms/block')->setBlockId('product_info_block')->toHtml();
+        endif;
+    ?>
+
+    <article id="popular">
+        <div class="grid-container">
+            <div class="grid-100">
+                <h2>What's Popular</h2>
+            </div>
+            <?php
+            $products = Mage::getModel('catalog/category')->load("3")
+                ->getProductCollection()
+                ->addAttributeToFilter('status', 1)
+                ->addAttributeToFilter('visibility', 4)
+                ->setPageSize(4)
+            ;
+            foreach($products as $prod):
+                $product = Mage::getModel('catalog/product')->load($prod->getId());
+                ?>
+                <div class="grid-25 mobile-grid-50">
+                    <a href="<?php echo $product->getProductUrl(); ?>">
+                        <img src="<?php echo Mage::helper('catalog/image')->init($product, 'image')->resize(275,342); ?>" alt=""/>
+                    </a>
+                    <h3><a href="<?php echo $product->getProductUrl(); ?>"><?php echo $product->getName(); ?></a></h3>
+                    <p class="popular-price">
+                        <?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?>
+                    </p>
+                    <ul>
+                        <li>
+                            <a href="">Share</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $this->helper('wishlist')->getAddUrl($prod); ?>">Save</a>
+                        </li>
+                    </ul>
+                </div>
+            <?php
+            endforeach;
+            ?>
+        </div>
+    </article>
+</div>
+
+<script>
+    var permalink = '<?php echo $product->getProductUrl(); ?>';
+    var getTwitterCount = function () {
+        jQuery.getJSON('http://urls.api.twitter.com/1/urls/count.json?url='+permalink+'&callback=?', function(data){
+            var twitterShares = data.count;
+            jQuery('.twitter-icons .share-count').text(twitterShares);
+        });
+    };
+    getTwitterCount();
+
+    var getFacebookCount = function () {
+        jQuery.getJSON('http://graph.facebook.com/?ids='+permalink+'&callback=?', function(data){
+            var facebookShares = data[permalink].shares;
+            jQuery('.facebook-icons .share-count').text(facebookShares);
+        });
+    };
+
+    getFacebookCount();
+
+    var getPinterestCount = function () {
+        jQuery.getJSON('http://api.pinterest.com/v1/urls/count.json?url=' + permalink + '&callback=?', function(data) {
+            var pinterestShares = data.count;
+            jQuery('.pinterest-icons .share-count').text(pinterestShares);
+        });
+    };
+
+    getPinterestCount();
+</script>

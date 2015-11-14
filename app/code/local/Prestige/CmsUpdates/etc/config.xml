@@ -1,0 +1,19 @@
+
+<?xml version="1.0"?>
+<config>
+    <modules>
+	<Prestige_CmsUpdates>
+            <version>0.0.1</version>
+        </Prestige_CmsUpdates>
+    </modules>
+    <global>
+	<resources>
+            <prestige_cmsupdates_setup>
+                <setup>
+                    <module>Prestige_CmsUpdates</module>
+                </setup>
+            </prestige_cmsupdates_setup>
+        </resources>
+    </global>
+</config>
+

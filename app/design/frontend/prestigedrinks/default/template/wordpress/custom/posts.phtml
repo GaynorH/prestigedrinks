@@ -1,0 +1,14 @@
+<?php
+$posts = $this->getPosts() ;
+if (count($posts) > 0):
+    foreach($posts as $post): ?>
+        <img src=" <?php echo $image_url = $post->getFeaturedImage()->getAvailableImage();?>" />
+        // also call here getAvailableImage(); for  Featured image  plz take <img> tag
+        <?php
+        echo  getPermalink(); // Post link
+        echo $post_date = $post->getPostDate(); // Post date
+        echo $post_day = date('l', strtotime($post_date)); // Day of Post
+        echo $post_title = $post->getPostTitle(); // Post Title
+    endforeach;
+endif;
+?>

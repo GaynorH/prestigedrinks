@@ -1,0 +1,8 @@
+Social Gifts - CHANGE LOGS
+-------------------------------
+Legend
++ New feature
+* Fix bug
+
+v1.0.4 (May 05, 2015)
++ Extension Release

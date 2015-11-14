@@ -1,0 +1,12 @@
+====Social Gifts======
+
+THEME INTERGRATION GUIDE
+
+Show social sharing box on shopping cart page
++ Edit the file app\design\frontend\<your_package>\<your_theme>\template\checkout\cart.phtm 
+   Inser this code: 
+   <?php echo $this->getChildHtml('checkout.cart.social') ?>
+   above this code
+   <?php echo $this->getChildHtml('coupon') ?>
+  	
+If you have any questions or problems, please post a ticket on website www.mage-world.com/contacts or send a message to support@mage-world.com 

@@ -1,0 +1,47 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php $post = $this->getPost();
+?>
+<div class="post-list-item">
+    <?php echo $this->getBeforePostContentHtml() ?>
+    <div class="post-entry entry<?php if ($post->getFeaturedImage()): ?> post-entry-with-image<?php endif; ?>">
+        <?php if ($post->isViewableForVisitor()): ?>
+            <?php if ($featuredImage = $post->getFeaturedImage()): ?>
+                <div class="featured-image left">
+                    <a href="<?php echo $post->getPermalink() ?>" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"><img src="<?php echo $featuredImage->getImageByType($type='blogImage'); ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"/></a>
+                </div>
+            <?php endif; ?>
+            <div class="post-details">
+                <h3><?php echo $post->getParentCategory()->getName(); ?></h3>
+                <hr />
+                <h2><a href="<?php echo $post->getPermalink() ?>" title="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"><?php echo $this->escapeHtml($post->getPostTitle()) ?></a></h2>
+                <?php
+                    $excerpt = $post->getPostExcerpt();
+
+                    $excerptArray = explode(" ",$excerpt);
+                ?>
+                <p>
+                    <?php
+                    $i = 0;
+                    while($i < 17):
+                        if($i == 16):
+                            echo $excerptArray[$i]."...";
+                        else:
+                            echo $excerptArray[$i]." ";
+                        endif;
+                        $i++;
+                    endwhile;
+                    ?>
+                </p>
+            </div>
+        <?php else: ?>
+            <?php echo $this->getPasswordProtectHtml($post) ?>
+        <?php endif; ?>
+    </div>
+</div>

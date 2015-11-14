@@ -1,0 +1,61 @@
+<header>
+    <div id="header-top">
+        <div class="grid-container">
+            <div class="grid-33">
+                <h1 class="logo">
+                    <a href="/">
+                        Prestige Drinks
+                    </a>
+                </h1>
+            </div>
+            <div class="grid-33">
+                <?php echo $this->getChildHtml('topSearch') ?>
+            </div>
+            <div class="grid-33">
+                <?php echo $this->getChildHtml('topLinks') ?>
+            </div>
+        </div>
+    </div>
+    <div id="main-nav">
+        <div class="grid-container">
+            <div class="grid-100">
+                <nav>
+                    <?php echo $this->getChildHtml('topMenu') ?>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-toolbar">
+        <ul>
+            <li class="mobile-menu">
+                <a id="nav-toggle" href="#"><span></span></a>
+            </li>
+            <li class="mobile-search">
+                <a href="">Mobile Search</a>
+            </li>
+            <li class="mobile-contact">
+                <a href="/contact-us">Contact Us</a>
+            </li>
+            <li class="mobile-account">
+                <a href="/customer/account">My Account</a>
+            </li>
+            <li class="mobile-checkout">
+                <a href="/checkout/cart">Checkout</a>
+            </li>
+        </ul>
+    </div>
+    <div class="grid-100 mobile-search-form">
+	<?php echo $this->getChildHtml('topSearch') ?>
+    </div>
+    <div id="dl-menu" class="dl-menuwrapper mobile-menu">
+        <button class="dl-trigger">Open Menu</button>
+        <nav id="mobile-nav" class="menu dl-menu-toggle">
+            <?php echo $this->getChildHtml('mobileMenu') ?>
+        </nav>
+    </div>
+
+    <?php echo $this->getChildHtml('promoBanner'); ?>
+</header>
+<?php
+//print_r($this->getLayout()->getUpdate()->getHandles());
+?>

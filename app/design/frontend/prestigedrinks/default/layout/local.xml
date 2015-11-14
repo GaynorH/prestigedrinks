@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+    <layout version="0.1.0">
+        <default>
+            <reference name="head">
+                <action method="addCss"><stylesheet>css/unsemantic.css</stylesheet></action>
+                <action method="addCss"><stylesheet>css/owl.carousel.css</stylesheet></action>
+                <action method="addCss"><stylesheet>css/jquery.fancybox.css</stylesheet></action>
+		<action method="addCss"><stylesheet>css/mobileMenu.css</stylesheet></action>
+                <action method="addCss"><stylesheet>css/fontawesome.css</stylesheet></action>
+                <action method="addItem"><type>skin_js</type><name>js/jquery.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/owl.carousel.min.js</name></action>
+		<action method="addItem"><type>skin_js</type><name>js/modernizr.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/cookie.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/jquery.fancybox.js</name></action>
+		<action method="addItem"><type>skin_js</type><name>js/mobileMenu.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/global.js</name></action>
+            </reference>
+            <reference name="header">
+                <block type="cms/block" name="promoBanner">
+                    <action method="setBlockId"><block_id>global_promo_block</block_id></action>
+                </block>
+		<block type="core/template" name="mobile.menu" as="mobileMenu" template="page/mobile-menu.phtml" />
+            </reference>
+            <reference name="top.links">
+                <action method="removeLinkByUrl"><url helper="customer/getLoginUrl"/></action>
+                <remove name="wishlist_link"/>
+                <remove name="cartLink" />
+                <action method="addLink" translate="label title">
+                    <label>Get In Touch</label>
+                    <url>contact-us</url>
+                    <title>Get In Touch</title>
+                    <prepare>true</prepare>
+                    <position>0</position>
+                </action>
+            </reference>
+            <reference name="footer">
+                <block type="newsletter/subscribe" name="newsletter" as="newsletter" template="newsletter/subscribe.phtml" before="-" />
+                <block type="cms/block" name="footer_links_block">
+                    <action method="setBlockId"><block_id>footer_links_block</block_id></action>
+                </block>
+            </reference>
+            <remove name="left.permanent.callout" />
+            <remove name="catalog.compare.sidebar" />  <!--product compare-->
+            <remove name="cart_sidebar" />  <!--product compare-->
+            <remove name="left.reports.product.viewed" /> <!--recently viewed prod-->
+        </default>
+        <cms_index_index>
+            <reference name="root">
+                <action method="setTemplate">
+                    <template>page/home.phtml</template>
+                </action>
+                <block type="core/template" name="wordpress_posts" template="wordpress/custom/posts.phtml" />
+            </reference>
+        </cms_index_index>
+        <catalogsearch_result_index translate="label">
+            <label>Quick Search Form</label>
+            <reference name="root">
+                <action method="setTemplate"><template>page/1column.phtml</template></action>
+            </reference>
+        </catalogsearch_result_index>
+        <cms_index_noroute>
+            <reference name="root">
+                <action method="setTemplate">
+                    <template>page/1column.phtml</template>
+                </action>
+            </reference>
+        </cms_index_noroute>
+        <catalog_product_view>
+            <reference name="root">
+                <action method="setTemplate">
+                    <template>page/1column.phtml</template>
+                </action>
+            </reference>
+            <reference nam="content">
+                <block type="cms/block" name="product_info_block">
+                    <action method="setBlockId">
+                        <block_id>footer_links_block</block_id>
+                    </action>
+                </block>
+            </reference>
+        </catalog_product_view>
+        <review_product_list>
+            <reference name="root">
+                <action method="setTemplate">
+                    <template>page/1column.phtml</template>
+                </action>
+            </reference>
+        </review_product_list>
+    <catalog_category_view>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+    </catalog_category_view>
+<catalog_category_layered>
+        <reference name="left">
+            <action method="unsetChild"><alias>catalog.leftnav</alias></action>
+        </reference>
+        <reference name="product_list">
+            <action method="insert"><blockName>catalog.leftnav</blockName></action>
+	</reference>
+	<reference name="catalog.leftnav">
+            <action method="unsetChild"><alias>category_filter</alias></action>
+        </reference>
+    </catalog_category_layered>
+    <checkout_cart_index>
+        <remove name="checkout.cart.shipping" />
+    </checkout_cart_index>
+    <wordpress_post_view>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+    </wordpress_post_view>
+    <wordpress_post_category_view>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+    </wordpress_post_category_view>
+    <customer_logged_in>
+        <reference name="top.links">
+            <action method="removeLinkByUrl"><url helper="customer/getLogoutUrl"/></action>
+        </reference>
+    </customer_logged_in>
+    <customer_logged_out>
+        <reference name="top.links">
+            <action method="removeLinkByUrl"><url helper="customer/getLoginUrl"/></action>
+        </reference>
+    </customer_logged_out>
+    <checkout_onepage_index>
+        <remove name="top.search"></remove>
+        <remove name="top.links"></remove>
+        <remove name="top.menu"></remove>
+        <remove name="footer"></remove>
+        <reference name="head">
+            <action method="removeItem"><type>skin_js</type><name>js/jquery.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/owl.carousel.min.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/cookie.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/jquery.fancybox.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/global.js</name></action>
+        </reference>
+        <reference name="header">
+            <remove name="mobileMenu" />
+        </reference>
+    </checkout_onepage_index>
+    <checkout_onepage_success>
+	<reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+    </checkout_onepage_success>
+    <customer_account>
+        <remove name="sale.reorder.sidebar" />
+        <remove name="catalog.compare.sidebar"/>
+        <reference name="customer_account_navigation">		
+            <action method="addLink" translate="label" module="customer">
+                <name>logout</name>
+                <path>customer/account/logout/</path>
+                <label>Log Out</label>
+            </action>
+        </reference>
+    </customer_account>
+    <contacts_index_index>
+	<reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+    </contacts_index_index>
+    </layout>

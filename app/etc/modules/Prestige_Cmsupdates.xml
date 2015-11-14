@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+	<Prestige_CmsUpdates>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends></depends>
+        </Prestige_CmsUpdates>
+    </modules>
+</config>
+
+
+
+

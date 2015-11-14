@@ -1,0 +1,109 @@
+header {
+  display: none;
+  #header-top {
+    background-color: $purple !important;
+    background: url("/template/assets/images/header-left.png") left center no-repeat, url("/template/assets/images/header-right.png") right center no-repeat;
+    padding: 28px 0;
+    h1.logo {
+        a {
+          background: url("/template/assets/images/logo.png") no-repeat;
+          width: 210px;
+          height: 68px;
+          display: block;
+          line-height: 0;
+          font-size: 0;
+          text-indent: -999em;
+        }
+    }
+    .search-form {
+      position: relative;
+      margin-top: 12px;
+      input {
+        &.search-input {
+          width: 100%;
+          border-radius: 22px;
+          height: 45px;
+          border: none;
+          outline: none;
+          padding: 0 20px;
+        }
+        &.submit-button {
+          background: url("/template/assets/images/search-glass.png") no-repeat;
+          width: 38px;
+          height: 38px;
+          display: block;
+          border: none;
+          line-height: 0;
+          font-size: 0;
+          text-indent: -999em;
+          position: absolute;
+          top: 4px;
+          right: 4px;
+          outline: none;
+          cursor: pointer;
+        }
+      }
+    }
+    .quick-links {
+      line-height: 68px;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: 400;
+      ul {
+        float: right;
+        li {
+          float: left;
+          &:last-of-type {
+            a {
+              padding-right: 0px;
+            }
+          }
+          a {
+            color: white;
+            padding-right: 20px;
+
+            &.account-link {
+              background: url("/template/assets/images/user.png") left center no-repeat;
+              padding-left: 25px;
+            }
+            &.contact-link {
+              background: url("/template/assets/images/pin.png") left center no-repeat;
+              padding-left: 20px;
+            }
+            &.basket-link {
+              background: url("/template/assets/images/cart.png") left center no-repeat;
+              padding-left: 25px;
+            }
+          }
+        }
+      }
+    }
+  }
+  #main-nav {
+    background: $darkPurple;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    ul {
+      text-align: center;
+      li {
+        display: inline-block;
+        &:first-of-type {
+          a {
+            padding-left: 0px;
+          }
+        }
+        &:last-of-type {
+          a {
+            padding-right: 0px;
+          }
+        }
+        a {
+          color: #fff;
+          padding: 25px;
+          display: block;
+
+        }
+      }
+    }
+  }
+}

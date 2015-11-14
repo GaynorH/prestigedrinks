@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+    <?php echo $this->getChildHtml('head') ?>
+</head>
+<body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
+<?php echo $this->getChildHtml('after_body_start') ?>
+<?php
+# Load Twitter class
+require_once('/var/www/vhosts/prestigedrinks.com/httpdocs/twitteroauth/autoload.php');
+use Abraham\TwitterOAuth\TwitterOAuth;
+# Define constants
+define('TWEET_LIMIT', 1);
+define('TWITTER_USERNAME', 'prestigedrinks');
+define('CONSUMER_KEY', 'F0SYwk32rYlsN1aX65QE3HDFD');
+define('CONSUMER_SECRET', 'SvkY7hRBbltiWcs8D8WZ1WgZw5OcYSpKk28iBwZHKpEhiBMg8y');
+define('ACCESS_TOKEN', '95677447-OwD4T5fvmDk01OMj1ZwQCATbcrqHQDDyjdHTRwwfv');
+define('ACCESS_TOKEN_SECRET', 'OH9jSy7x3EMsgXN3paEFSSuyifzgeZ6VwcFMRaRQvGbIB');
+# Create the connection
+$twitter = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
+# Migrate over to SSL/TLS
+$twitter->ssl_verifypeer = true;
+# Load the Tweets
+$tweets = $twitter->get('statuses/user_timeline', array('screen_name' => TWITTER_USERNAME, 'exclude_replies' => 'true', 'include_rts' => 'false', 'count' => TWEET_LIMIT));
+# Example output
+?>
+<div class="wrapper">
+    <?php echo $this->getChildHtml('global_notices') ?>
+    <div class="page">
+        <?php echo $this->getChildHtml('header') ?>
+        <div class="main-container col1-layout">
+            <div class="main">
+                <?php echo $this->getChildHtml('breadcrumbs') ?>
+                <div class="col-main">
+                    <section id="main-banner" class="owl-carousel">
+                        <?php
+                        echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_page_slider')->toHtml();
+                        ?>
+                    </section>
+
+                    <section id="main-home">
+                        <article id="pods">
+                            <div class="grid-container">
+                                <div class="grid-50 holder-column">
+                                    <?php
+                                    echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_page_block_1')->toHtml();
+                                    ?>
+                                    <div class="grid-50 grid-parent mobile-grid-50">
+                                        <div class="twitter">
+                                            <div class="twitter-content">
+                                                <h2></h2>
+                                                <?php
+                                                if(!empty($tweets)) {
+                                                    foreach($tweets as $tweet):
+                                                        echo $tweet->text;
+                                                    endforeach;
+                                                }
+                                                ?>
+                                                <a href="/" class="twitter-link">@PrestigeDrinks</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    $json = file_get_contents("https://api.instagram.com/v1/users/1531384505/media/recent/?access_token=1531384505.1677ed0.296519f72af34f198dfb9975d4c2f509");
+                                    $data = json_decode($json);
+					//var_dump($data);
+                                    // to get the array with all resolutions
+                                    $images = array();
+                                    foreach( $data->data as $user_data ) {
+                                        $images[] = (array) $user_data->images;
+                                    }
+                                    ?>
+                                    <div class="grid-50 grid-parent mobile-grid-50 small-block"><div class="image-container"><img alt="" src="<?php echo $images[0]['low_resolution']->url; ?>" /></div>
+                                        <div class="footer-text light-blue">
+                                            <div class="pod-text-holder"><h2>LATEST FROM INSTAGRAM</h2></div>
+                                        </div>
+                                    </div>
+                                    <div class="grid-100 grid-parent">
+                                        <?php
+                                        $numPostsToShow = 1;
+                                        $categoryId = 1; //Replace with your category id
+                                        $recentPostCollection = Mage::getModel('wordpress/post')->getCollection()
+                                        ->addIsPublishedFilter()
+                                        ->setOrder('post_date', 'desc')
+                                        ->setPageSize($numPostsToShow)
+                                        ;
+                                        foreach($recentPostCollection as $recent):
+                                        ?>
+                                            <a href="<?php echo $recent->getPermalink();?>">
+                                            <div class="image-container"><img src="<?php echo $recent->getFeaturedImage()->getImageByType($type='homeImage'); ?>" /></div>
+                                            <div class="grid-50 grid-parent push-50 content">
+                                                <div class="side-content">
+                                                    <h3>Blog</h3>
+                                                    <hr />
+                                                    <h2>
+                                                        <a href="<?php echo $recent->getPermalink();?> ">
+                                                            <?php echo $recent->getPostTitle(); ?>
+                                                        </a>
+                                                    </h2>
+                                                    <p><?php echo $recent->getPostExcerpt(); ?></p>
+                                                </div>
+                                            </div>
+                                            </a>
+                                        <?php
+                                        endforeach;
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="grid-50 holder-column-2">
+                                    <?php
+                                        echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_page_block_5')->toHtml();
+                                    ?>
+                                    <?php
+                                    echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_page_block_6')->toHtml();
+                                    ?>
+                                    <?php
+                                    echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_page_block_7')->toHtml();
+                                    ?>
+                                    <?php
+                                    echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_page_block_8')->toHtml();
+                                    ?>
+                                    <?php
+                                    echo $this->getLayout()->createBlock('cms/block')->setBlockId('home_page_block_9')->toHtml();
+                                    ?>
+                                </div>
+                            </div>
+                        </article>
+                        <article id="popular">
+                            <div class="grid-container">
+                                <div class="grid-100">
+                                    <h2>What's Popular</h2>
+                                </div>
+                                <?php
+                                $products = Mage::getModel('catalog/category')->load("4")
+                                    ->getProductCollection()
+                                    ->addAttributeToFilter('status', 1)
+                                    ->addAttributeToFilter('visibility', 4)
+                                    ->setPageSize(4)
+                                ;
+                                foreach($products as $prod):
+                                    $product = Mage::getModel('catalog/product')->load($prod->getId());
+                                ?>
+                                    <div class="product-pod grid-25 mobile-grid-50">
+                                        <div class="product-pod-image"><a href="<?php echo $product->getProductUrl(); ?>">
+                                            <img src="<?php echo Mage::helper('catalog/image')->init($product, 'image')->resize(275,342); ?>" alt=""/>
+                                        </a></div>
+                                        <h3><a href="<?php echo $product->getProductUrl(); ?>"><?php echo $product->getName(); ?></a></h3>
+
+                                        <div class="product-price">
+                                            <?php
+                                                if($product->getSpecialPrice()) {
+                                            ?>
+                                                    <p class="old-price">
+                                                        <?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?>
+                                                    </p>
+                                                    <p class="special-price">
+                                                        <?php echo Mage::helper('core')->currency($product->getSpecialPrice(), true, false); ?>
+                                                    </p>
+                                            <?php
+                                                }
+                                                else {
+                                            ?>
+                                                    <p class="popular-price">
+                                                        <?php echo Mage::helper('core')->currency($product->getPrice(), true, false); ?>
+                                                    </p>
+                                            <?php
+                                                }
+                                            ?>
+                                        </div>
+                                        <ul>
+                                            <li>
+                                                <a href="">Share</a>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo $this->helper('wishlist')->getAddUrl($prod); ?>">Save</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                <?php
+                                endforeach;
+                                ?>
+                            </div>
+                        </article>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <?php echo $this->getChildHtml('footer') ?>
+        <?php echo $this->getChildHtml('global_cookie_notice') ?>
+        <?php echo $this->getChildHtml('before_body_end') ?>
+    </div>
+</div>
+<?php echo $this->getAbsoluteFooter() ?>
+</body>
+</html>

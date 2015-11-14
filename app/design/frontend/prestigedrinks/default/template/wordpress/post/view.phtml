@@ -1,0 +1,80 @@
+<?php
+/**
+ * @category    Fishpig
+ * @package     Fishpig_Wordpress
+ * @license     http://fishpig.co.uk/license.txt
+ * @author      Ben Tideswell <help@fishpig.co.uk>
+ */
+?>
+<?php $post = $this->getPost(); $url = urlencode($post->getPermalink()); ?>
+<?php if ($post): ?>
+    <?php $helper = $this->helper('wordpress') ?>
+    <?php $author = $post->getAuthor() ?>
+    <div class="page-title post-title grid-100">
+        <h2><?php echo $post->getParentCategory()->getName(); ?></h2>
+        <hr />
+        <h1><?php echo $this->escapeHtml($post->getPostTitle()) ?></h1>
+    </div>
+    <div class="post-view grid-100">
+        <div class="post-entry entry std<?php if ($post->getFeaturedImage()): ?> post-entry-with-image<?php endif; ?>">
+            <?php if ($post->isViewableForVisitor()): ?>
+                <?php if ($featuredImage = $post->getFeaturedImage()): ?>
+                    <div class="featured-image left"><img src="<?php echo $featuredImage->getFullSizeImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"/></div>
+                <?php endif; ?>
+                <div class="post-page-content">
+                    <div class="social-share">
+                        <ul>
+                            <li class="twitter-share"><a href="https://twitter.com/home?status=<?php echo $url; ?>"></a></li>
+                            <li class="facebook-share"><a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url; ?>"></a></li>
+                            <li class="google-share"><a href="https://plus.google.com/share?url=<?php echo $url; ?>"></a></li>
+                            <li class="linkedin-share"><a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $url; ?>&title=<?php echo $post->getPostTitle(); ?>"></a></li>
+                        </ul>
+                    </div>
+                    <div class="post-content">
+                        <?php echo $post->getPostContent() ?>
+                    </div>
+                </div>
+            <?php else: ?>
+                <?php echo $this->getPasswordProtectHtml() ?>
+            <?php endif; ?>
+            <div class="related-posts">
+                <h2>Related Posts</h2>
+                <?php
+                $numPostsToShow = 3;
+                $categoryId = 1; //Replace with your category id
+                $recentPostCollection = Mage::getModel('wordpress/post')->getCollection()
+                    ->addIsPublishedFilter()
+                    ->addCategoryIdFilter($categoryId)
+                    ->setOrder('post_date', 'desc')
+                    ->setPageSize($numPostsToShow)
+                ;
+                foreach($recentPostCollection as $recent):
+                    ?>
+                    <div class="grid-33">
+                        <a href="<?php echo $recent->getPermalink();?>">
+                            <div class="post-image">
+                                <div class="image-container"><img src="<?php echo $recent->getFeaturedImage()->getImageByType($type='homeImage'); ?>" /></div>
+                            </div>
+                            <div class="post-content-pod">
+                                <div class="content">
+                                    <h3>Blog</h3>
+                                    <hr />
+                                    <h2>
+                                        <a href="<?php echo $recent->getPermalink();?> ">
+                                            <?php echo $recent->getPostTitle(); ?>
+                                        </a>
+                                    </h2>
+                                    <p><?php echo $recent->getPostExcerpt(); ?></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                <?php
+                endforeach;
+                ?>
+            </div>
+        </div>
+        <?php //echo $this->getAfterPostContentHtml() ?>
+        <?php //echo $this->getCommentsHtml() ?>
+    </div>
+<?php endif; ?>

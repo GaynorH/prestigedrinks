@@ -1,0 +1,526 @@
+/* line 5, ../scss/global/_reset.scss */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* line 15, ../scss/global/_reset.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* line 18, ../scss/global/_reset.scss */
+body {
+  line-height: 1;
+}
+
+/* line 21, ../scss/global/_reset.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 24, ../scss/global/_reset.scss */
+blockquote, q {
+  quotes: none;
+}
+
+/* line 28, ../scss/global/_reset.scss */
+blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 34, ../scss/global/_reset.scss */
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+/* line 39, ../scss/global/_reset.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 43, ../scss/global/_reset.scss */
+a {
+  text-decoration: none;
+}
+
+/* line 46, ../scss/global/_reset.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 49, ../scss/global/_reset.scss */
+html {
+  font-size: 14px;
+}
+
+/* line 2, ../scss/global/_header.scss */
+header #header-top {
+  background-color: #592a3c !important;
+  background: url("/template/assets/images/header-left.png") left center no-repeat, url("/template/assets/images/header-right.png") right center no-repeat;
+  padding: 28px 0;
+}
+/* line 7, ../scss/global/_header.scss */
+header #header-top h1.logo a {
+  background: url("/template/assets/images/logo.png") no-repeat;
+  width: 210px;
+  height: 68px;
+  display: block;
+  line-height: 0;
+  font-size: 0;
+  text-indent: -999em;
+}
+/* line 17, ../scss/global/_header.scss */
+header #header-top .search-form {
+  position: relative;
+  margin-top: 12px;
+}
+/* line 21, ../scss/global/_header.scss */
+header #header-top .search-form input.search-input {
+  width: 100%;
+  border-radius: 22px;
+  height: 45px;
+  border: none;
+  outline: none;
+  padding: 0 20px;
+}
+/* line 29, ../scss/global/_header.scss */
+header #header-top .search-form input.submit-button {
+  background: url("/template/assets/images/search-glass.png") no-repeat;
+  width: 38px;
+  height: 38px;
+  display: block;
+  border: none;
+  line-height: 0;
+  font-size: 0;
+  text-indent: -999em;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  outline: none;
+  cursor: pointer;
+}
+/* line 46, ../scss/global/_header.scss */
+header #header-top .quick-links {
+  line-height: 68px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+}
+/* line 50, ../scss/global/_header.scss */
+header #header-top .quick-links ul {
+  float: right;
+}
+/* line 52, ../scss/global/_header.scss */
+header #header-top .quick-links ul li {
+  float: left;
+}
+/* line 55, ../scss/global/_header.scss */
+header #header-top .quick-links ul li:last-of-type a {
+  padding-right: 0px;
+}
+/* line 59, ../scss/global/_header.scss */
+header #header-top .quick-links ul li a {
+  color: white;
+  padding-right: 20px;
+}
+/* line 63, ../scss/global/_header.scss */
+header #header-top .quick-links ul li a.account-link {
+  background: url("/template/assets/images/user.png") left center no-repeat;
+  padding-left: 25px;
+}
+/* line 67, ../scss/global/_header.scss */
+header #header-top .quick-links ul li a.contact-link {
+  background: url("/template/assets/images/pin.png") left center no-repeat;
+  padding-left: 20px;
+}
+/* line 71, ../scss/global/_header.scss */
+header #header-top .quick-links ul li a.basket-link {
+  background: url("/template/assets/images/cart.png") left center no-repeat;
+  padding-left: 25px;
+}
+/* line 80, ../scss/global/_header.scss */
+header #main-nav {
+  background: #301620;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+/* line 85, ../scss/global/_header.scss */
+header #main-nav ul {
+  text-align: center;
+}
+/* line 87, ../scss/global/_header.scss */
+header #main-nav ul li {
+  display: inline-block;
+}
+/* line 90, ../scss/global/_header.scss */
+header #main-nav ul li:first-of-type a {
+  padding-left: 0px;
+}
+/* line 95, ../scss/global/_header.scss */
+header #main-nav ul li:last-of-type a {
+  padding-right: 0px;
+}
+/* line 99, ../scss/global/_header.scss */
+header #main-nav ul li a {
+  color: #fff;
+  padding: 25px;
+  display: block;
+}
+
+/* line 2, ../scss/global/_banner.scss */
+#main-banner .carousel-block {
+  background-position: center;
+  background-size: cover !important;
+  display: table;
+  width: 100%;
+}
+/* line 8, ../scss/global/_banner.scss */
+#main-banner .carousel-block .carousel-content {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+}
+/* line 14, ../scss/global/_banner.scss */
+#main-banner .carousel-block .carousel-content p.headline {
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  font-size: 25px;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+/* line 22, ../scss/global/_banner.scss */
+#main-banner .carousel-block .carousel-content hr {
+  width: 100px;
+  margin: 0 auto 20px;
+  opacity: 0.5;
+}
+/* line 27, ../scss/global/_banner.scss */
+#main-banner .carousel-block .carousel-content h2 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 100px;
+  margin-bottom: 25px;
+}
+/* line 34, ../scss/global/_banner.scss */
+#main-banner .carousel-block .carousel-content h3 {
+  font-family: Georgia;
+  font-style: italic;
+  font-size: 24px;
+  margin-bottom: 70px;
+}
+/* line 40, ../scss/global/_banner.scss */
+#main-banner .carousel-block .carousel-content a {
+  text-transform: uppercase;
+  padding: 20px 50px;
+  width: 230px;
+  display: block;
+  border: 1px solid white;
+  margin: 0 auto;
+  color: white;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  transition: background 0.5s;
+}
+/* line 53, ../scss/global/_banner.scss */
+#main-banner .carousel-block .carousel-content a:hover {
+  background: white;
+  color: black;
+  transition: background 0.5s;
+}
+
+/* line 2, ../scss/global/_footer.scss */
+footer #newsletter-signup {
+  background: #555556;
+  padding: 15px 0;
+}
+/* line 5, ../scss/global/_footer.scss */
+footer #newsletter-signup p {
+  color: white;
+  font-family: Georgia;
+  font-style: italic;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+}
+/* line 14, ../scss/global/_footer.scss */
+footer #footer-links {
+  background: #dedede;
+  width: 100%;
+  float: left;
+  padding: 50px 0;
+}
+/* line 19, ../scss/global/_footer.scss */
+footer #footer-links .footer-pod {
+  text-align: center;
+  margin-bottom: 45px;
+}
+/* line 22, ../scss/global/_footer.scss */
+footer #footer-links .footer-pod h3 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  margin-bottom: 35px;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+/* line 29, ../scss/global/_footer.scss */
+footer #footer-links .footer-pod a {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  color: #5d5d5d;
+  font-size: 15px;
+  border-bottom: 1px solid #5d5d5d;
+  padding: 10px 0;
+  display: block;
+}
+/* line 39, ../scss/global/_footer.scss */
+footer #footer-links p.copyright {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 35px;
+}
+/* line 47, ../scss/global/_footer.scss */
+footer .social-links {
+  text-align: center;
+}
+/* line 50, ../scss/global/_footer.scss */
+footer .social-links li {
+  display: inline-block;
+}
+/* line 53, ../scss/global/_footer.scss */
+footer .social-links li a {
+  background: url("/template/assets/images/social-sprite.png") no-repeat;
+  width: 36px;
+  height: 36px;
+  display: block;
+  text-indent: -999em;
+  font-size: 0px;
+  line-height: 0px;
+  margin: 0px 10px;
+}
+/* line 63, ../scss/global/_footer.scss */
+footer .social-links li a.facebook-social {
+  background-position: 0px 0px;
+}
+/* line 66, ../scss/global/_footer.scss */
+footer .social-links li a.google-social {
+  background-position: -56px 0px;
+}
+/* line 69, ../scss/global/_footer.scss */
+footer .social-links li a.pinterest-social {
+  background-position: -112px 0px;
+}
+/* line 72, ../scss/global/_footer.scss */
+footer .social-links li a.twitter-social {
+  background-position: -167px 0px;
+}
+/* line 75, ../scss/global/_footer.scss */
+footer .social-links li a.linkedin-social {
+  background-position: -223px 0px;
+}
+/* line 81, ../scss/global/_footer.scss */
+footer p.payby {
+  background: url("/template/assets/images/paybyicons.png") no-repeat;
+  width: 180px;
+  height: 33px;
+  display: block;
+  text-indent: -999em;
+  font-size: 0px;
+  line-height: 0px;
+  text-align: center;
+  margin: 30px auto 0;
+}
+
+/* line 1, ../scss/pages/_home.scss */
+#popular {
+  padding: 40px 0;
+  text-align: center;
+}
+/* line 5, ../scss/pages/_home.scss */
+#popular img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* line 10, ../scss/pages/_home.scss */
+#popular h2 {
+  font-family: "Oswald" sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+/* line 17, ../scss/pages/_home.scss */
+#popular h3 {
+  font-family: "Oswald" sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin: 15px 0;
+}
+/* line 25, ../scss/pages/_home.scss */
+#popular p.popular-price {
+  font-size: 24px;
+  color: #d51755;
+  font-family: "Source Sans Pro" sans-serif;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+/* line 33, ../scss/pages/_home.scss */
+#popular ul {
+  text-align: center;
+}
+/* line 35, ../scss/pages/_home.scss */
+#popular ul li {
+  display: inline-block;
+  font-family: Georgia;
+  font-style: italic;
+  font-size: 14px;
+  padding: 0 20px;
+}
+/* line 42, ../scss/pages/_home.scss */
+#popular ul li a {
+  color: black;
+}
+/* line 44, ../scss/pages/_home.scss */
+#popular ul li a:hover {
+  text-decoration: underline;
+}
+
+/* line 51, ../scss/pages/_home.scss */
+#pods {
+  margin-top: 35px;
+}
+/* line 53, ../scss/pages/_home.scss */
+#pods .grid-50, #pods .grid-100 {
+  position: relative;
+  overflow: hidden;
+}
+/* line 57, ../scss/pages/_home.scss */
+#pods .holder-column {
+  padding-right: 0px;
+}
+/* line 60, ../scss/pages/_home.scss */
+#pods .footer-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: -244px;
+  padding: 14px;
+}
+/* line 67, ../scss/pages/_home.scss */
+#pods .footer-text.green {
+  background: #32870d;
+}
+/* line 70, ../scss/pages/_home.scss */
+#pods .footer-text.purple {
+  background: #58293c;
+}
+/* line 73, ../scss/pages/_home.scss */
+#pods .footer-text.blue {
+  background: #07446b;
+}
+/* line 76, ../scss/pages/_home.scss */
+#pods .footer-text.orange {
+  background: #e89606;
+}
+/* line 79, ../scss/pages/_home.scss */
+#pods .footer-text h2 {
+  color: white;
+  text-transform: uppercase;
+  font-family: "Oswald" sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+/* line 87, ../scss/pages/_home.scss */
+#pods .content {
+  position: absolute;
+  color: white;
+  text-align: center;
+  padding: 55px 25px;
+  background: rgba(0, 0, 0, 0.5);
+}
+/* line 94, ../scss/pages/_home.scss */
+#pods .content:after, #pods .content:before {
+  right: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+/* line 105, ../scss/pages/_home.scss */
+#pods .content:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-right-color: #88b7d5;
+  border-width: 30px;
+  margin-top: -30px;
+}
+/* line 111, ../scss/pages/_home.scss */
+#pods .content:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-right-color: #c2e1f5;
+  border-width: 36px;
+  margin-top: -36px;
+}
+/* line 117, ../scss/pages/_home.scss */
+#pods .content hr {
+  width: 30px;
+  margin: 0 auto 25px;
+  opacity: 0.5;
+}
+/* line 122, ../scss/pages/_home.scss */
+#pods .content h3 {
+  text-transform: uppercase;
+  font-family: "Oswald Light" sans-serif;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+/* line 128, ../scss/pages/_home.scss */
+#pods .content h2 {
+  text-transform: uppercase;
+  font-family: "Oswald" sans-serif;
+  font-size: 26px;
+  margin-bottom: 20px;
+  line-height: 1.2em;
+}
+/* line 135, ../scss/pages/_home.scss */
+#pods .content p {
+  font-family: Georgia;
+  font-style: italic;
+  line-height: 1.5em;
+  width: 80%;
+  margin: 0 auto;
+}
+/* line 142, ../scss/pages/_home.scss */
+#pods .content.push-50 {
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  top: 0px;
+}
+/* line 149, ../scss/pages/_home.scss */
+#pods .holder-column-2 {
+  padding-left: 0px;
+}
+/* line 152, ../scss/pages/_home.scss */
+#pods img {
+  height: auto;
+  width: 100%;
+  display: block;
+}

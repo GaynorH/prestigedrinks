@@ -1,0 +1,43 @@
+<footer>
+    <section id="newsletter-signup">
+        <div class="grid-container">
+            <div class="grid-100">
+                <p>
+                    Get all the latest news and special offers direct to your inbox
+                </p>
+                <?php echo $this->getChildHtml('newsletter'); ?>
+            </div>
+        </div>
+    </section>
+    <section id="footer-links">
+        <div class="grid-container">
+            <?php echo $this->getChildHtml("footer_links_block"); ?>
+            <div class="grid-100">
+                <ul class="social-links">
+                    <li><a href="" class="facebook-social">Facebook</a></li>
+                    <li><a href="" class="google-social">Google+</a></li>
+                    <li><a href="" class="pinterest-social">Pinterest</a></li>
+                    <li><a href="" class="twitter-social">Twitter</a></li>
+                    <li><a href="" class="linkedin-social">Linkedin</a></li>
+                </ul>
+                <p class="payby">
+                    We accept
+                </p>
+                <p class="copyright">
+                    &copy; <?php echo date("Y"); ?> Prestige Drinks
+                </p>
+            </div>
+        </div>
+    </section>
+</footer>
+
+<a href="#agegate" class="fancybox">Fancybox</a>
+<div class="legal">
+    <div id="agegate">
+        <h2>Are you over 18 Years Old?</h2>
+        <form id="agegateform" method="post" action="">
+            <input type="submit" value="yes" name="yes" id="yesbutton">
+            <input type="submit" value="no" name="no" id="nobutton">
+        </form>
+    </div>
+</div>

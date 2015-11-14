@@ -1,0 +1,92 @@
+footer {
+  #newsletter-signup {
+    background: #555556;
+    padding: 15px 0;
+    p {
+      color: white;
+      font-family: Georgia;
+      font-style: italic;
+      font-size: 20px;
+      text-align: center;
+      line-height: 40px;
+    }
+  }
+  #footer-links {
+    background: #dedede;
+    width: 100%;
+    float: left;
+    padding: 50px 0;
+    .footer-pod {
+      text-align: center;
+      margin-bottom: 45px;
+      h3 {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 400;
+        margin-bottom: 35px;
+        font-size: 24px;
+        text-transform: uppercase;
+      }
+      a {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 400;
+        color: #5d5d5d;
+        font-size: 15px;
+        border-bottom: 1px solid #5d5d5d;
+        padding: 10px 0;
+        display: block;
+      }
+    }
+    p.copyright {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      text-align: center;
+      margin-top: 35px;
+    }
+  }
+  .social-links {
+    text-align: center;
+
+    li {
+      display: inline-block;
+
+      a {
+        background: url("/template/assets/images/social-sprite.png") no-repeat;
+        width: 36px;
+        height: 36px;
+        display: block;
+        text-indent: -999em;
+        font-size: 0px;
+        line-height: 0px;
+        margin: 0px 10px;
+
+        &.facebook-social {
+          background-position: 0px 0px;
+        }
+        &.google-social {
+          background-position: -56px 0px;
+        }
+        &.pinterest-social {
+          background-position: -112px 0px;
+        }
+        &.twitter-social {
+          background-position: -167px 0px;
+        }
+        &.linkedin-social {
+          background-position: -223px 0px;
+        }
+      }
+    }
+  }
+  p.payby {
+    background: url("/template/assets/images/paybyicons.png") no-repeat;
+    width: 180px;
+    height: 33px;
+    display: block;
+    text-indent: -999em;
+    font-size: 0px;
+    line-height: 0px;
+    text-align: center;
+    margin: 30px auto 0;
+  }
+}
